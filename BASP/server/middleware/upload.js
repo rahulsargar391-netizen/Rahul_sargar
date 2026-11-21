@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Private folder: never shared as a public web folder
-export const uploadDir = path.join(__dirname, '..', 'uploads')
+export const uploadDir = path.resolve(process.env.UPLOAD_DIR || path.join(__dirname, '..', 'uploads'))
 fs.mkdirSync(uploadDir, { recursive: true })
 
 export const allowedTypes = {

@@ -18,8 +18,21 @@ if (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'CHANGE_ME') {
 
 const app = express()
 
-// Only our own website may call this server
-app.use(cors({ origin: process.env.CLIENT_URL }))
+// Only our configured websites may call this server
+const allowedOrigins = (process.env.CLIENT_URL || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean)
+
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+      return
+    }
+    callback(new Error('Origin is not allowed'))
+  },
+}))
 
 // A few safe browser headers
 app.use((req, res, next) => {
