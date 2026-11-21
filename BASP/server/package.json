@@ -1,0 +1,24 @@
+{
+  "name": "basp-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js",
+    "seed": "node scripts/seed.js",
+    "setup-env": "node scripts/setup-env.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.1",
+    "mysql2": "^3.14.0",
+    "qrcode": "^1.5.4",
+    "sequelize": "^6.37.7"
+  }
+}
